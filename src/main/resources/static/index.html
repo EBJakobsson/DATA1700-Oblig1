@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="billettBehandler.js"></script>
+    <style>
+        .tb th, .tb td {
+            padding: 5px;
+            border: solid 1px #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bestilling av kinobilletter</h1>
+    <label for="dropMenu">Velg film:</label>
+    <select name="filmValg" id="dropMenu" class="innVerdi">
+        <option selected disabled hidden value="">Velg film her</option>
+        <option value="Indiana Jones">Indiana Jones</option>
+        <option value="Shrek">Shrek</option>
+        <option value="Uncharted">Uncharted</option>
+        <option value="Avatar 2">Avatar 2</option>
+        <option value="Tenet">Tenet</option>
+    </select>
+    <span id = "feilmeldingFilm" class="feilmelding" style="color: red"></span>
+    <br><br>
+
+    <label for="antall">Antall:</label>
+    <input type="number" id = "antall" name = "antall" maxlength="2" size = "2" min="0" class="innVerdi"
+           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required/>
+    <span id = "feilmeldingAntall" class="feilmelding" style="color: red"></span>
+    <br><br>
+
+    <table>
+        <tr>
+            <td><label for="fornavn">Fornavn:</label></td>
+            <td><input type="text" id="fornavn" class="innVerdi" required></td>
+            <td><span id = "feilmeldingFor" class="feilmelding" style="color: red"></span></td>
+        </tr>
+        <tr>
+            <td><label for="etternavn">Etternavn:</label></td>
+            <td><input type="text" id="etternavn" class="innVerdi" required></td>
+            <td><span id="feilmeldingEtter" class="feilmelding" style="color: red"></span></td>
+        </tr>
+        <tr>
+            <td><label for="tlfnr">Telefonnummer:</label></td>
+            <td><input type="text" id="tlfnr" class="innVerdi" pattern="[0-9]{7,12}"
+                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required/></td>
+            <td><span id="feilmeldingTlf" class="feilmelding" style="color: red"></span></td>
+        </tr>
+        <tr>
+            <td><label for="epost">E-post:</label></td>
+            <td><input type="email" id="epost" class="innVerdi" required></td>
+            <td><span id="feilmeldingEpost" class="feilmelding" style="color: red"></span></td>
+        </tr>
+        <tr>
+            <td><button onclick="checkValid()">Kjøp billett</button></td>
+        </tr>
+    </table>
+
+    <h2>Alle billetter</h2>
+    <div id="billettRegister"></div>
+    <button onclick="slettRegister()">Slett alle billettene</button>
+</body>
+</html>
